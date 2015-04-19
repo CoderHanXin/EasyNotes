@@ -7,7 +7,7 @@ A simple notes App for Android.
 
 ## Run Environment
 Min SDK version 4.0+
-Android Studio version 1.1
+Android Studio version 1.1.0
 Gradle version 2.2.1
 
 ## Open source projects
