@@ -11,6 +11,7 @@ Android Studio version 1.1
 Gradle version 2.2.1
 
 ## Open source projects
+- [OrmLite](http://ormlite.com/)
 - [PagerSlidingTabStrip](https://github.com/astuetz/PagerSlidingTabStrip)
 - [StickyListHeaders](https://github.com/emilsjolander/StickyListHeaders)
 - [FloatingActionButton](https://github.com/Clans/FloatingActionButton)
