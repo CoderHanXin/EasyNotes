@@ -1,0 +1,51 @@
+<resources>
+
+    <string name="app_name">EasyNotes</string>
+    <!--Toolbar-->
+    <string name="new_note">New Note</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="view_note">View Note</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_create">Create</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_save">Save</string>
+    <string name="action_share">Share</string>
+
+    <!--text in page-->
+    <string name="page_today">Today</string>
+    <string name="page_history">History</string>
+
+    <!--AlertDialog-->
+    <string name="alert.title.delete">Delete note</string>
+    <string name="alert.title.save">Save changes</string>
+    <string name="alert.message.delete">Are you sure?</string>
+    <string name="alert.message.save">Do you want to save your changes?</string>
+    <string name="alert.btn.save">Save</string>
+    <string name="alert.btn.delete">Delete</string>
+    <string name="alert.btn.cancel">Cancel</string>
+
+    <!--Preferences-->
+    <string name="pref_fab_gravity">Gravity for the floating button</string>
+    <string name="pref_show_dialogs">Ask before saving</string>
+    <string name="pre_about">About EasyNote</string>
+
+    <!--Drawer item-->
+    <string name="drawer.item.backup">Backup</string>
+    <string name="drawer.item.about">About</string>
+
+    <!--Toast message-->
+    <string name="toast.emptyText">Please enter some text.</string>
+
+    <!--Other-->
+    <string name="drawer_open">Drawer open</string>
+    <string name="drawer_close">Drawer close</string>
+
+
+    <string-array name="gravity_for_fab">
+        <item>Right</item>
+        <item>Center</item>
+        <item>Left</item>
+    </string-array>
+
+</resources>

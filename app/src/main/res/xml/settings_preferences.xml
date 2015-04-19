@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/action_settings">
+    <ListPreference
+        android:defaultValue="right"
+        android:entries="@array/gravity_for_fab"
+        android:entryValues="@array/gravity_for_fab_values"
+        android:key="gravity"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_fab_gravity" />
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="dialogs"
+        android:title="@string/pref_show_dialogs" />
+
+    <Preference
+        android:key="about"
+        android:title="@string/pre_about"></Preference>
+</PreferenceScreen>

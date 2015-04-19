@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/brand_text"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/drawer_item_backup"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_height="@dimen/list_item_height_small">
+
+        <ImageView
+            android:id="@+id/drawer_item_icon_backup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/spacing_small"
+            android:src="@drawable/ic_action_upload" />
+
+        <TextView
+            android:id="@+id/backup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/drawer_item_icon_backup"
+            android:paddingLeft="@dimen/spacing_tiny"
+            android:text="@string/drawer.item.backup"
+            android:textSize="@dimen/font_large" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/drawer_item_about"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height_small"
+        android:layout_below="@+id/drawer_item_backup">
+
+        <ImageView
+            android:id="@+id/drawer_item_icon_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/spacing_small"
+            android:src="@drawable/ic_action_info" />
+
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/drawer_item_icon_about"
+            android:paddingLeft="@dimen/spacing_tiny"
+            android:text="@string/drawer.item.about"
+            android:textSize="@dimen/font_large" />
+    </RelativeLayout>
+</RelativeLayout>
