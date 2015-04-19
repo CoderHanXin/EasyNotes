@@ -17,7 +17,6 @@ Gradle version 2.2.1
 
 
 ## License
-============
 
     Copyright 2014 CoderHanXin
 
