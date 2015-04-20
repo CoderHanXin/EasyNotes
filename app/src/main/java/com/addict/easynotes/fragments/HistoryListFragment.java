@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) 2015 Coder.HanXin
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.addict.easynotes.fragments;
 
 import android.graphics.Color;
@@ -28,19 +42,16 @@ public class HistoryListFragment extends BaseFragment implements
         StickyListHeadersListView.OnHeaderClickListener {
 
     private MyStickyListAdapter mAdapter;
-    private SwipeRefreshLayout refreshLayout;
-    private StickyListHeadersListView stickyList;
-    // 每次下拉刷新加载的数据
-    private Long rowCount = 10L;
-
-
-    List<Note> noteList;
+    private SwipeRefreshLayout mRefreshLayout;
+    private StickyListHeadersListView mStickyList;
+    private Long mRowCount = 10L;
+    private List<Note> mNoteList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        noteList = new NoteDao(getActivity()).searchByUpdateTimeToAndPage(DateUtils.getCurrentDate(), 0L, rowCount);
-        Collections.reverse(noteList);
+        mNoteList = new NoteDao(getActivity()).searchByUpdateTimeToAndPage(DateUtils.getCurrentDate(), 0L, mRowCount);
+        Collections.reverse(mNoteList);
     }
 
     @Override
@@ -49,47 +60,47 @@ public class HistoryListFragment extends BaseFragment implements
 
         View rootView = inflater.inflate(R.layout.fragment_notes_history, container, false);
 
-        refreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_layout);
-        refreshLayout.setOnRefreshListener(this);
-        refreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE);
+        mRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_layout);
+        mRefreshLayout.setOnRefreshListener(this);
+        mRefreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE);
 
 
-        mAdapter = new MyStickyListAdapter(getActivity(), noteList);
-        stickyList = (StickyListHeadersListView) rootView.findViewById(R.id.history_list);
-        stickyList.setOnItemClickListener(this);
-        stickyList.setOnHeaderClickListener(this);
-        stickyList.setDrawingListUnderStickyHeader(true);
-        stickyList.setAreHeadersSticky(true);
-        stickyList.setAdapter(mAdapter);
+        mAdapter = new MyStickyListAdapter(getActivity(), mNoteList);
+        mStickyList = (StickyListHeadersListView) rootView.findViewById(R.id.listView_history);
+        mStickyList.setOnItemClickListener(this);
+        mStickyList.setOnHeaderClickListener(this);
+        mStickyList.setDrawingListUnderStickyHeader(true);
+        mStickyList.setAreHeadersSticky(true);
+        mStickyList.setAdapter(mAdapter);
         return rootView;
     }
 
     /**
-     * 下拉刷新事件
+     * pull to refresh
      */
     @Override
     public void onRefresh() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                refreshLayout.setRefreshing(false);
-                List<Note> newList = new NoteDao(getActivity()).searchByUpdateTimeToAndPage(DateUtils.getCurrentDate(), (long)noteList.size(), rowCount);
+                mRefreshLayout.setRefreshing(false);
+                List<Note> newList = new NoteDao(getActivity()).searchByUpdateTimeToAndPage(DateUtils.getCurrentDate(), (long) mNoteList.size(), mRowCount);
                 Collections.reverse(newList);
-                newList.addAll(noteList);
-                noteList = newList;
-                mAdapter.refresh(noteList);
+                newList.addAll(mNoteList);
+                mNoteList = newList;
+                mAdapter.refresh(mNoteList);
             }
         }, 1000);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ToastUtils.showLong("note update time:" + DateUtils.formatDateToString(noteList.get(position).getUpdateTime(), "yyyy-MM-dd HH:mm:ss"));
+        ToastUtils.showLong("note update time:" + DateUtils.formatDateToString(mNoteList.get(position).getUpdateTime(), "yyyy-MM-dd HH:mm:ss"));
     }
 
     @Override
     public void onHeaderClick(StickyListHeadersListView l, View header, int itemPosition, long headerId, boolean currentlySticky) {
-        TextView tv = (TextView) header.findViewById(R.id.header_text);
+        TextView tv = (TextView) header.findViewById(R.id.textView_header);
         tv.getText();
         ToastUtils.showLong("header:" + tv.getText());
     }

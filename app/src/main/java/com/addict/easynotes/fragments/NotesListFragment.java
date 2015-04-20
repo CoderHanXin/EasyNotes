@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) 2015 Coder.HanXin
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.addict.easynotes.fragments;
 
 import android.content.Context;
@@ -31,13 +45,13 @@ public class NotesListFragment extends BaseFragment {
     protected MyRecyclerAdapter mAdapter;
     protected FloatingActionButton mFab;
     private int mScrollOffset = 4;
-    List<Note> noteList;
+    List<Note> mNoteList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Initialize data
-        noteList = new NoteDao(getActivity()).searchByUpdateTimeFrom(DateUtils.getCurrentDate());
+        mNoteList = new NoteDao(getActivity()).searchByUpdateTimeFrom(DateUtils.getCurrentDate());
     }
 
     @Override
@@ -46,13 +60,12 @@ public class NotesListFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_notes_list, container, false);
 
         /******************BEGIN Initialize RecyclerView***************************/
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.notes_list_recycler);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView_notes_list);
         mRecyclerView.setHasFixedSize(true);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
-//        setRecyclerViewLayoutManager();
 
         //set divider
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
@@ -61,14 +74,14 @@ public class NotesListFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 Note note = mAdapter.getList().get(position);
-                Intent intent = new Intent(getActivity(),NewNoteActivity.class);
+                Intent intent = new Intent(getActivity(), NewNoteActivity.class);
                 intent.putExtra("noteId", note.getNoteId());
                 startActivity(intent);
             }
         }));
 
         // Set MyRecyclerAdapter as the adapter for RecyclerView.
-        mAdapter = new MyRecyclerAdapter(noteList);
+        mAdapter = new MyRecyclerAdapter(mNoteList);
         mRecyclerView.setAdapter(mAdapter);
         /******************END Initialize RecyclerView*************************/
 
@@ -103,26 +116,12 @@ public class NotesListFragment extends BaseFragment {
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
 
-        noteList = new NoteDao(getActivity()).searchByUpdateTimeFrom(DateUtils.getCurrentDate());
-        mAdapter.refresh(noteList);
+        mNoteList = new NoteDao(getActivity()).searchByUpdateTimeFrom(DateUtils.getCurrentDate());
+        mAdapter.refresh(mNoteList);
         setGravityForFab();
-    }
-
-    public void setRecyclerViewLayoutManager() {
-        int scrollPosition = 0;
-
-
-        // If a layout manager has already been set, get current scroll position.
-        if (mRecyclerView.getLayoutManager() != null) {
-            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
-                    .findFirstCompletelyVisibleItemPosition();
-        }
-
-//        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.scrollToPosition(scrollPosition);
     }
 
     @Override
@@ -131,20 +130,23 @@ public class NotesListFragment extends BaseFragment {
     }
 
     // Set gravity for fab by Settings
-    private void setGravityForFab(){
-        SharedPreferences sp = getActivity().getSharedPreferences(getActivity().getPackageName()+"_preferences", Context.MODE_PRIVATE);
-        String gravity = sp.getString("gravity","right");
-        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,FrameLayout.LayoutParams.WRAP_CONTENT);
-        lp.bottomMargin=(int) getActivity().getResources().getDimension(R.dimen.spacing_small);
+    private void setGravityForFab() {
+        SharedPreferences sp = getActivity().getSharedPreferences(getActivity().getPackageName() + "_preferences", Context.MODE_PRIVATE);
+        String gravity = sp.getString("gravity", "right");
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        lp.bottomMargin = (int) getActivity().getResources().getDimension(R.dimen.spacing_small);
 
-        if(gravity.equals("right")){
-            lp.gravity = Gravity.BOTTOM|Gravity.RIGHT;
-            lp.rightMargin = (int) getActivity().getResources().getDimension(R.dimen.spacing_small);
-        }else if(gravity.equals("center")){
-            lp.gravity = Gravity.BOTTOM|Gravity.CENTER;
-        }else if(gravity.equals("left")){
-            lp.gravity = Gravity.BOTTOM|Gravity.LEFT;
-            lp.leftMargin = (int) getActivity().getResources().getDimension(R.dimen.spacing_small);
+        switch (gravity){
+            case "right":
+                lp.gravity = Gravity.BOTTOM | Gravity.RIGHT;
+                lp.rightMargin = (int) getActivity().getResources().getDimension(R.dimen.spacing_small);
+                break;
+            case "center":
+                lp.gravity = Gravity.BOTTOM | Gravity.CENTER;
+                break;
+            case "left":
+                lp.gravity = Gravity.BOTTOM | Gravity.LEFT;
+                lp.leftMargin = (int) getActivity().getResources().getDimension(R.dimen.spacing_small);
         }
 
         mFab.setLayoutParams(lp);

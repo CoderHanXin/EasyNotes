@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) 2015 Coder.HanXin
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.addict.easynotes.views.adapters;
 
 
@@ -93,8 +107,8 @@ public class MyStickyListAdapter extends BaseAdapter implements SectionIndexer, 
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = mInflater.inflate(R.layout.list_item_today, parent, false);
-            holder.tvDate = (TextView) convertView.findViewById(R.id.date_textView);
-            holder.tvContent = (TextView) convertView.findViewById(R.id.content_textView);
+            holder.tvDate = (TextView) convertView.findViewById(R.id.textView_date);
+            holder.tvContent = (TextView) convertView.findViewById(R.id.textView_content);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -113,7 +127,7 @@ public class MyStickyListAdapter extends BaseAdapter implements SectionIndexer, 
         if (convertView == null) {
             holder = new HeaderViewHolder();
             convertView = mInflater.inflate(R.layout.list_header_history, parent, false);
-            holder.tvHeader = (TextView) convertView.findViewById(R.id.header_text);
+            holder.tvHeader = (TextView) convertView.findViewById(R.id.textView_header);
             convertView.setTag(holder);
         } else {
             holder = (HeaderViewHolder) convertView.getTag();
