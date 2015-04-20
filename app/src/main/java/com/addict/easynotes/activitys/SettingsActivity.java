@@ -1,6 +1,8 @@
 package com.addict.easynotes.activitys;
 
 
+import android.app.Activity;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -9,7 +11,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 import com.addict.easynotes.R;
-import com.addict.easynotes.utils.ToastUtils;
+import com.addict.easynotes.fragments.AboutDialogFragment;
 
 public class SettingsActivity extends PreferenceActivity {
 
@@ -21,30 +23,30 @@ public class SettingsActivity extends PreferenceActivity {
 
 
     public static class MyPreferenceFragment extends PreferenceFragment {
+        private static Activity mContext;
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_preferences);
 
-//            findPreference("about").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-//                @Override
-//                public boolean onPreferenceClick(Preference preference) {
-//                    if (preference.getKey().equals("about")) {
-//                        ToastUtils.showShort("this is about");
-//                    }
-//                    return true;
-//                }
-//            });
             findPreference("about").setOnPreferenceClickListener(mPreferenceClickListener);
             bindPreferenceSummaryToValue(findPreference("gravity"));
 
+        }
+
+        @Override
+        public void onAttach(Activity activity) {
+            super.onAttach(activity);
+            mContext = activity;
         }
 
         private static Preference.OnPreferenceClickListener mPreferenceClickListener = new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 if (preference.getKey().equals("about")) {
-                    ToastUtils.showShort("this is about");
+                    DialogFragment aboutFragment = new AboutDialogFragment();
+                    aboutFragment.show(mContext.getFragmentManager(), "about");
                 }
                 return true;
             }
