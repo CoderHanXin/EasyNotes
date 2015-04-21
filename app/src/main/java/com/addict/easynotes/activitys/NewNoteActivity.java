@@ -1,6 +1,8 @@
 /*
  * Copyright (c) 2015 Coder.HanXin
- * You may not use this file except in compliance with the License.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -42,12 +44,64 @@ import java.util.Date;
 
 public class NewNoteActivity extends BaseActivity {
 
+    protected FloatingActionButton mFab;
     private EditText mEditTextContent;
     private TextView mTextViewContent;
-    protected FloatingActionButton mFab;
     private Toolbar mToolbar;
     private Boolean isEdit = true;
     private Note mNote;
+    private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            String msg = "";
+            switch (menuItem.getItemId()) {
+                case R.id.action_save:
+                    if (mEditTextContent.getText().toString().isEmpty()) {
+                        ToastUtils.showShort(R.string.toast_emptyText);
+                        break;
+                    }
+                    if (mNote.getContent() == null || !mNote.getContent().equals(mEditTextContent.getText().toString())) {
+                        saveChanges();
+                        break;
+                    }
+                    if (mNote.getContent().equals(mEditTextContent.getText().toString())) {
+                        finish();
+                        break;
+                    }
+                    break;
+                case R.id.action_edit:
+                    setEditState();
+                    msg += "Click edit";
+                    break;
+                case R.id.action_delete:
+                    new AlertDialog.Builder(NewNoteActivity.this)
+                            .setTitle(R.string.alert_title_delete)
+                            .setMessage(R.string.alert_message_delete)
+                            .setPositiveButton(R.string.alert_btn_delete, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (mNote != null) {
+                                        new NoteDao(NewNoteActivity.this).deleteById(mNote.getNoteId());
+                                    }
+                                    dialog.dismiss();
+                                    finish();
+                                }
+                            })
+                            .setNegativeButton(R.string.alert_btn_cancel, null)
+                            .create()
+                            .show();
+                    break;
+                case R.id.action_share:
+                    msg += "Click share";
+                    break;
+            }
+
+            if (!msg.equals("")) {
+                ToastUtils.showShort(msg);
+            }
+            return true;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +165,6 @@ public class NewNoteActivity extends BaseActivity {
         setGravityForFab();
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -168,59 +221,6 @@ public class NewNoteActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
-        @Override
-        public boolean onMenuItemClick(MenuItem menuItem) {
-            String msg = "";
-            switch (menuItem.getItemId()) {
-                case R.id.action_save:
-                    if (mEditTextContent.getText().toString().isEmpty()) {
-                        ToastUtils.showShort(R.string.toast_emptyText);
-                        break;
-                    }
-                    if (mNote.getContent() == null || !mNote.getContent().equals(mEditTextContent.getText().toString())) {
-                        saveChanges();
-                        break;
-                    }
-                    if (mNote.getContent().equals(mEditTextContent.getText().toString())) {
-                        finish();
-                        break;
-                    }
-                    break;
-                case R.id.action_edit:
-                    setEditState();
-                    msg += "Click edit";
-                    break;
-                case R.id.action_delete:
-                    new AlertDialog.Builder(NewNoteActivity.this)
-                            .setTitle(R.string.alert_title_delete)
-                            .setMessage(R.string.alert_message_delete)
-                            .setPositiveButton(R.string.alert_btn_delete, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    if (mNote != null) {
-                                        new NoteDao(NewNoteActivity.this).deleteById(mNote.getNoteId());
-                                    }
-                                    dialog.dismiss();
-                                    finish();
-                                }
-                            })
-                            .setNegativeButton(R.string.alert_btn_cancel, null)
-                            .create()
-                            .show();
-                    break;
-                case R.id.action_share:
-                    msg += "Click share";
-                    break;
-            }
-
-            if (!msg.equals("")) {
-                ToastUtils.showShort(msg);
-            }
-            return true;
-        }
-    };
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -282,7 +282,7 @@ public class NewNoteActivity extends BaseActivity {
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
         lp.bottomMargin = (int) getResources().getDimension(R.dimen.spacing_small);
 
-        switch (gravity){
+        switch (gravity) {
             case "right":
                 lp.gravity = Gravity.BOTTOM | Gravity.RIGHT;
                 lp.rightMargin = (int) getResources().getDimension(R.dimen.spacing_small);

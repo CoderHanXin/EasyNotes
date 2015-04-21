@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (c) 2015 Coder.HanXin
-  ~ You may not use this file except in compliance with the License.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
   ~ You may obtain a copy of the License at
   ~
   ~     http://www.apache.org/licenses/LICENSE-2.0
@@ -14,10 +16,11 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/header_selector">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/header_selector"
+    >
 
     <TextView
         android:id="@+id/textView_header"
@@ -26,6 +29,7 @@
         android:gravity="start"
         android:textColor="@color/primary_light"
         android:textSize="@dimen/font_normal"
-        tools:text="04-15" />
+        tools:text="04-15"
+        />
 
 </RelativeLayout>

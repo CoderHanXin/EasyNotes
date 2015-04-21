@@ -1,6 +1,8 @@
 /*
  * Copyright (c) 2015 Coder.HanXin
- * You may not use this file except in compliance with the License.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -32,7 +34,8 @@ import java.util.List;
 
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
-public class MyStickyListAdapter extends BaseAdapter implements SectionIndexer, StickyListHeadersAdapter {
+public class MyStickyListAdapter extends BaseAdapter
+        implements SectionIndexer, StickyListHeadersAdapter {
 
     private List<Note> mList;
     private int[] mSectionIndices;

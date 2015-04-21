@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (c) 2015 Coder.HanXin
-  ~ You may not use this file except in compliance with the License.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
   ~ You may obtain a copy of the License at
   ~
   ~     http://www.apache.org/licenses/LICENSE-2.0
@@ -14,15 +16,18 @@
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+             xmlns:fab="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical"
+    >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView_notes_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"/>
+        android:scrollbars="vertical"
+        />
 
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/fab"
@@ -32,6 +37,7 @@
         android:src="@drawable/ic_action_add"
         fab:fab_colorNormal="@color/accent"
         fab:fab_colorPressed="@color/secondary_accent"
-        fab:fab_colorRipple="@color/ripple"/>
+        fab:fab_colorRipple="@color/ripple"
+        />
 
 </FrameLayout>

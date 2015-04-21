@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2015 Coder.HanXin
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.addict.easynotes.dao;
 
 
@@ -21,48 +37,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String TAG = "DatabaseHelper";
     private static final String DATABASE_NAME = "esaynotes.db";
     private static final int DATABASE_VERSION = 1;
-
+    private static DatabaseHelper instance;
     private Map<String, Dao> daos = new HashMap<String, Dao>();
     private Map<String, RuntimeExceptionDao> runtimeDaos = new HashMap<String, RuntimeExceptionDao>();
-
     private Dao<Note, Integer> noteDao = null;
-
     private RuntimeExceptionDao<Note, Integer> noteRuntimeDao = null;
-
-    private static DatabaseHelper instance;
 
     private DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource)
-    {
-        try
-        {
-            TableUtils.createTable(connectionSource, Note.class);
-        }
-        catch (SQLException e)
-        {
-            Log.e(TAG, e.toString());
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int oldVersion, int newVersion)
-    {
-        try
-        {
-            TableUtils.dropTable(connectionSource, Note.class, true);
-            onCreate(sqLiteDatabase, connectionSource);
-        }
-        catch (SQLException e)
-        {
-            Log.e(TAG, e.toString());
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -71,32 +53,49 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
      * @param context
      * @return
      */
-    public static synchronized DatabaseHelper getHelper(Context context)
-    {
+    public static synchronized DatabaseHelper getHelper(Context context) {
         context = context.getApplicationContext();
-        if (instance == null)
-        {
-            synchronized (DatabaseHelper.class)
-            {
-                if (instance == null)
+        if (instance == null) {
+            synchronized (DatabaseHelper.class) {
+                if (instance == null) {
                     instance = new DatabaseHelper(context);
+                }
             }
         }
 
         return instance;
     }
 
-    public synchronized Dao getDao(Class clazz) throws SQLException
-    {
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
+        try {
+            TableUtils.createTable(connectionSource, Note.class);
+        } catch (SQLException e) {
+            Log.e(TAG, e.toString());
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int oldVersion, int newVersion) {
+        try {
+            TableUtils.dropTable(connectionSource, Note.class, true);
+            onCreate(sqLiteDatabase, connectionSource);
+        } catch (SQLException e) {
+            Log.e(TAG, e.toString());
+            e.printStackTrace();
+        }
+    }
+
+    public synchronized Dao getDao(Class clazz) throws SQLException {
         Dao dao = null;
         String className = clazz.getSimpleName();
 
-        if (daos.containsKey(className))
-        {
+        if (daos.containsKey(className)) {
             dao = daos.get(className);
         }
-        if (dao == null)
-        {
+        if (dao == null) {
             dao = super.getDao(clazz);
             daos.put(className, dao);
         }
@@ -104,17 +103,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     }
 
 
-    public synchronized RuntimeExceptionDao getRuntimeDao(Class clazz)
-    {
+    public synchronized RuntimeExceptionDao getRuntimeDao(Class clazz) {
         RuntimeExceptionDao runtimeDao = null;
         String className = clazz.getSimpleName();
 
-        if (runtimeDaos.containsKey(className))
-        {
+        if (runtimeDaos.containsKey(className)) {
             runtimeDao = runtimeDaos.get(className);
         }
-        if (runtimeDao == null)
-        {
+        if (runtimeDao == null) {
             runtimeDao = super.getRuntimeExceptionDao(clazz);
             runtimeDaos.put(className, runtimeDao);
         }
@@ -139,12 +135,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
      * 释放资源
      */
     @Override
-    public void close()
-    {
+    public void close() {
         super.close();
 
-        for (String key : daos.keySet())
-        {
+        for (String key : daos.keySet()) {
             Dao dao = daos.get(key);
             dao = null;
         }

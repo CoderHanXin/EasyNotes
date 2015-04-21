@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (c) 2015 Coder.HanXin
-  ~ You may not use this file except in compliance with the License.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
   ~ You may obtain a copy of the License at
   ~
   ~     http://www.apache.org/licenses/LICENSE-2.0
@@ -14,14 +16,16 @@
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical"
+    >
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <se.emilsjolander.stickylistheaders.StickyListHeadersListView
             android:id="@+id/listView_history"
@@ -30,10 +34,11 @@
             android:clipToPadding="false"
             android:dividerHeight="1dp"
             android:drawSelectorOnTop="true"
+            android:fastScrollEnabled="true"
+            android:overScrollMode="never"
             android:padding="@dimen/spacing_small"
             android:scrollbarStyle="outsideOverlay"
-            android:fastScrollEnabled="true"
-            android:overScrollMode="never"/>
+            />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 </FrameLayout>

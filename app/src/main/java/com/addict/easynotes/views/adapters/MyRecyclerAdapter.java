@@ -1,6 +1,8 @@
 /*
  * Copyright (c) 2015 Coder.HanXin
- * You may not use this file except in compliance with the License.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -36,24 +38,6 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         mNoteList = noteList;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private View mView;
-        private TextView mDateTextView;
-        private TextView mContentTextView;
-
-        public ViewHolder(View v) {
-            super(v);
-        }
-
-        public ViewHolder(View v, TextView dateTextView, TextView contentTextView){
-            this(v);
-
-            mDateTextView = dateTextView;
-            mContentTextView = contentTextView;
-            mView =v;
-        }
-    }
-
     // Create new views (invoked by the layout manager)
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -78,12 +62,30 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         return mNoteList.size();
     }
 
-    public List<Note> getList(){
+    public List<Note> getList() {
         return mNoteList;
     }
 
-    public void refresh(List<Note> list){
+    public void refresh(List<Note> list) {
         mNoteList = list;
         notifyDataSetChanged();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private View mView;
+        private TextView mDateTextView;
+        private TextView mContentTextView;
+
+        public ViewHolder(View v) {
+            super(v);
+        }
+
+        public ViewHolder(View v, TextView dateTextView, TextView contentTextView) {
+            this(v);
+
+            mDateTextView = dateTextView;
+            mContentTextView = contentTextView;
+            mView = v;
+        }
     }
 }

@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2015 Coder.HanXin
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.addict.easynotes.activitys;
 
 import android.content.Intent;
@@ -21,6 +37,28 @@ public class MainActivity extends BaseActivity {
     private PagerSlidingTabStrip mTabs;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
+    private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            String msg = "";
+            Intent intent;
+            switch (menuItem.getItemId()) {
+                case R.id.action_add:
+                    intent = new Intent(MainActivity.this, NewNoteActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.action_settings:
+                    intent = new Intent(MainActivity.this, SettingsActivity.class);
+                    startActivity(intent);
+                    break;
+            }
+
+            if (!msg.equals("")) {
+                ToastUtils.showShort(msg);
+            }
+            return true;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +80,7 @@ public class MainActivity extends BaseActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    private void initViewPager(){
+    private void initViewPager() {
         mTabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         mViewPager = (ViewPager) findViewById(R.id.viewPage);
         mViewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
@@ -50,7 +88,6 @@ public class MainActivity extends BaseActivity {
         mTabs.setTextColor(getResources().getColor(R.color.brand_text));
         mTabs.setTextSize(getResources().getDimensionPixelOffset(R.dimen.font_normal));
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,27 +110,4 @@ public class MainActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
-        @Override
-        public boolean onMenuItemClick(MenuItem menuItem) {
-            String msg = "";
-            Intent intent;
-            switch (menuItem.getItemId()) {
-                case R.id.action_add:
-                    intent = new Intent(MainActivity.this, NewNoteActivity.class);
-                    startActivity(intent);
-                    break;
-                case R.id.action_settings:
-                    intent = new Intent(MainActivity.this, SettingsActivity.class);
-                    startActivity(intent);
-                    break;
-            }
-
-            if(!msg.equals("")) {
-                ToastUtils.showShort(msg);
-            }
-            return true;
-        }
-    };
 }
