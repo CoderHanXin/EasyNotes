@@ -58,7 +58,7 @@
     <!--Other-->
     <string name="drawer_open">Drawer open</string>
     <string name="drawer_close">Drawer close</string>
-    <string name="about_message">EasyNotes: a simple notes App for Android.</string>
+    <string name="about_message">EasyNotes: a simple notes App for Android.\n\n&#169; 2015 Coder.HanXin\n\nThis app\'s <a href="https://github.com/CoderHanXin/EasyNotes">source code</a> is licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License V2</a>.\n\nThis app uses icons from the following sources:\n\n&#8226; <a href="https://github.com/google/material-design-icons">Material Design Icons</a>\n\nIt also uses many other open source libraries such as:\n\n&#8226; <a href="http://ormlite.com/">OrmLite</a>\n\n&#8226; <a href="https://github.com/astuetz/PagerSlidingTabStrip">PagerSlidingTabStrip</a>\n\n&#8226; <a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a>\n\n&#8226; <a href="https://github.com/Clans/FloatingActionButton">FloatingActionButton</a></string>
 
 
     <string-array name="gravity_for_fab">
