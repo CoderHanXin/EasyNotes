@@ -49,6 +49,10 @@ public class MyStickyListAdapter extends BaseAdapter
         mSectionHeaders = getSectionHeaders();
     }
 
+    public List<Note> getList(){
+        return mList;
+    }
+
     public void refresh(List<Note> list) {
         mList = list;
         mSectionIndices = getSectionIndices();
@@ -109,7 +113,7 @@ public class MyStickyListAdapter extends BaseAdapter
 
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = mInflater.inflate(R.layout.list_item_today, parent, false);
+            convertView = mInflater.inflate(R.layout.list_item_history, parent, false);
             holder.tvDate = (TextView) convertView.findViewById(R.id.textView_date);
             holder.tvContent = (TextView) convertView.findViewById(R.id.textView_content);
             convertView.setTag(holder);

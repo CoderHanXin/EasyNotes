@@ -16,6 +16,7 @@
 
 package com.addict.easynotes.fragments;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.addict.easynotes.R;
+import com.addict.easynotes.activitys.NewNoteActivity;
 import com.addict.easynotes.dao.NoteDao;
 import com.addict.easynotes.models.Note;
 import com.addict.easynotes.utils.DateUtils;
@@ -74,7 +76,17 @@ public class HistoryListFragment extends BaseFragment implements
         mStickyList.setDrawingListUnderStickyHeader(true);
         mStickyList.setAreHeadersSticky(true);
         mStickyList.setAdapter(mAdapter);
+
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        mNoteList = new NoteDao(getActivity()).searchByUpdateTimeToAndPage(DateUtils.getCurrentDate(), 0L, (long) mNoteList.size());
+        Collections.reverse(mNoteList);
+        mAdapter.refresh(mNoteList);
     }
 
     /**
@@ -97,7 +109,10 @@ public class HistoryListFragment extends BaseFragment implements
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ToastUtils.showLong("note update time:" + DateUtils.formatDateToString(mNoteList.get(position).getUpdateTime(), "yyyy-MM-dd HH:mm:ss"));
+        Note note = mAdapter.getList().get(position);
+        Intent intent = new Intent(getActivity(), NewNoteActivity.class);
+        intent.putExtra("noteId", note.getNoteId());
+        startActivity(intent);
     }
 
     @Override
