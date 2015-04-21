@@ -38,6 +38,8 @@
         android:layout_below="@+id/textView_date"
         android:layout_marginLeft="@dimen/spacing_normal"
         android:layout_marginRight="@dimen/spacing_normal"
+        android:ellipsize="end"
+        android:singleLine="true"
         tools:text="content"
         />
 
