@@ -136,19 +136,19 @@ public class NotesListFragment extends BaseFragment {
         SharedPreferences sp = getActivity().getSharedPreferences(getActivity().getPackageName() + "_preferences", Context.MODE_PRIVATE);
         String gravity = sp.getString("gravity", "right");
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-        lp.bottomMargin = (int) getActivity().getResources().getDimension(R.dimen.spacing_small);
+        lp.bottomMargin = (int) getActivity().getResources().getDimension(R.dimen.spacing_normal);
 
         switch (gravity) {
             case "right":
                 lp.gravity = Gravity.BOTTOM | Gravity.RIGHT;
-                lp.rightMargin = (int) getActivity().getResources().getDimension(R.dimen.spacing_small);
+                lp.rightMargin = (int) getActivity().getResources().getDimension(R.dimen.spacing_normal);
                 break;
             case "center":
                 lp.gravity = Gravity.BOTTOM | Gravity.CENTER;
                 break;
             case "left":
                 lp.gravity = Gravity.BOTTOM | Gravity.LEFT;
-                lp.leftMargin = (int) getActivity().getResources().getDimension(R.dimen.spacing_small);
+                lp.leftMargin = (int) getActivity().getResources().getDimension(R.dimen.spacing_normal);
         }
 
         mFab.setLayoutParams(lp);

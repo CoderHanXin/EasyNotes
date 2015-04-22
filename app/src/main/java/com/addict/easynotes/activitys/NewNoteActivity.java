@@ -110,6 +110,7 @@ public class NewNoteActivity extends BaseActivity {
         mEditTextContent = (EditText) findViewById(R.id.editText_content);
         mTextViewContent = (TextView) findViewById(R.id.textView_content);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
 
         mNote = new Note();
         Intent intent = getIntent();
@@ -130,6 +131,7 @@ public class NewNoteActivity extends BaseActivity {
             mTextViewContent.setVisibility(View.INVISIBLE);
             mEditTextContent.requestFocus();
             isEdit = true;
+            mFab.setVisibility(View.VISIBLE);
         }
 
         setSupportActionBar(mToolbar);
@@ -144,7 +146,6 @@ public class NewNoteActivity extends BaseActivity {
         });
 
         // Set FloatingActionButton listener
-        mFab = (FloatingActionButton) findViewById(R.id.fab);
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -269,6 +270,7 @@ public class NewNoteActivity extends BaseActivity {
         mEditTextContent.setSelection(mEditTextContent.getText().toString().length());
         mEditTextContent.setVisibility(View.VISIBLE);
         mTextViewContent.setVisibility(View.INVISIBLE);
+        mFab.setVisibility(View.VISIBLE);
         getSupportActionBar().setTitle(R.string.edit_note);
         isEdit = true;
         NewNoteActivity.this.invalidateOptionsMenu();
@@ -280,19 +282,19 @@ public class NewNoteActivity extends BaseActivity {
         SharedPreferences sp = getSharedPreferences(getPackageName() + "_preferences", Context.MODE_PRIVATE);
         String gravity = sp.getString("gravity", "right");
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-        lp.bottomMargin = (int) getResources().getDimension(R.dimen.spacing_small);
+        lp.bottomMargin = (int) getResources().getDimension(R.dimen.spacing_normal);
 
         switch (gravity) {
             case "right":
                 lp.gravity = Gravity.BOTTOM | Gravity.RIGHT;
-                lp.rightMargin = (int) getResources().getDimension(R.dimen.spacing_small);
+                lp.rightMargin = (int) getResources().getDimension(R.dimen.spacing_normal);
                 break;
             case "center":
                 lp.gravity = Gravity.BOTTOM | Gravity.CENTER;
                 break;
             case "left":
                 lp.gravity = Gravity.BOTTOM | Gravity.LEFT;
-                lp.leftMargin = (int) getResources().getDimension(R.dimen.spacing_small);
+                lp.leftMargin = (int) getResources().getDimension(R.dimen.spacing_normal);
         }
 
         mFab.setLayoutParams(lp);
