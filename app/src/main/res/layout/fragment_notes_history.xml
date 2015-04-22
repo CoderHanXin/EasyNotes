@@ -36,7 +36,6 @@
             android:drawSelectorOnTop="true"
             android:fastScrollEnabled="true"
             android:overScrollMode="never"
-            android:padding="@dimen/spacing_small"
             android:scrollbarStyle="outsideOverlay"
             />
 

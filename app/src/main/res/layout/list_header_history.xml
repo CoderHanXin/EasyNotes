@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:gravity="start"
         android:textColor="@color/primary_light"
+        android:layout_marginLeft="@dimen/spacing_normal"
         android:textSize="@dimen/font_normal"
         tools:text="04-15"
         />
