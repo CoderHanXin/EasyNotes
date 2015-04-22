@@ -242,6 +242,16 @@ public class NewNoteActivity extends BaseActivity {
     }
 
     private void saveChanges() {
+        SharedPreferences sp = getSharedPreferences(getPackageName() + "_preferences", Context.MODE_PRIVATE);
+        Boolean isShowDialogs = sp.getBoolean("dialogs", true);
+        if (!isShowDialogs) {
+            mNote.setContent(mEditTextContent.getText().toString());
+            mNote.setUpdateTime(new Date(System.currentTimeMillis()));
+            new NoteDao(NewNoteActivity.this).createOrUpdate(mNote);
+            finish();
+            return;
+        }
+
         new AlertDialog.Builder(NewNoteActivity.this)
                 .setTitle(R.string.alert_title_save)
                 .setMessage(R.string.alert_message_save)
