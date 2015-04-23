@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2015 Coder.HanXin
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">简记</string>
+    <string name="action_create">新建</string>
+    <string name="action_delete">删除</string>
+    <string name="action_edit">编辑</string>
+    <string name="action_save">保存</string>
+    <string name="action_settings">设置</string>
+    <string name="action_share">分享</string>
+    <string name="alert.btn.cancel">取消</string>
+    <string name="alert.btn.close">关闭</string>
+    <string name="alert.btn.delete">删除</string>
+    <string name="alert.btn.save">保存</string>
+    <string name="alert.message.delete">你确定吗？</string>
+    <string name="alert.message.save">你确定吗？</string>
+    <string name="alert.title.About">关于</string>
+    <string name="alert.title.delete">删除笔记</string>
+    <string name="alert.title.save">保存笔记</string>
+    <string name="drawer.item.about">关于</string>
+    <string name="drawer.item.backup">备份</string>
+    <string name="drawer_close">Drawer close</string>
+    <string name="drawer_open">Drawer open</string>
+    <string name="edit_note">编辑</string>
+    <string name="new_note">新建</string>
+    <string name="page_history">历史</string>
+    <string name="page_today">今日</string>
+    <string name="pre_about">关于简记</string>
+    <string name="pref_fab_gravity">浮动按钮位置</string>
+    <string name="pref_show_dialogs">保存前询问</string>
+    <string name="toast.emptyText">请输入文字</string>
+    <string name="view_note">查看</string>
+    <string name="about_message">简记: 一个简单易用的安卓笔记应用。\n\n&#169; 2015 Coder.HanXin\n\n这个应用的<a href="https://github.com/CoderHanXin/EasyNotes">源代码</a>开源协议采用<a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License V2</a>。\n\n应用所使用的图标来自于下面的开源项目：\n\n&#8226; <a href="https://github.com/google/material-design-icons">Material Design Icons</a>\n\n应用还使用了一些其他的开源项目，例如：\n\n&#8226; <a href="http://ormlite.com/">OrmLite</a>\n\n&#8226; <a href="https://github.com/astuetz/PagerSlidingTabStrip">PagerSlidingTabStrip</a>\n\n&#8226; <a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a>\n\n&#8226; <a href="https://github.com/Clans/FloatingActionButton">FloatingActionButton</a></string>
+
+    <string-array name="gravity_for_fab">
+        <item>右侧</item>
+        <item>中间</item>
+        <item>左侧</item>
+    </string-array>
+</resources>
