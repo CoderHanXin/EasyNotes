@@ -71,7 +71,6 @@ public class NewNoteActivity extends BaseActivity {
                     break;
                 case R.id.action_edit:
                     setEditState();
-                    msg += "Click edit";
                     break;
                 case R.id.action_delete:
                     new AlertDialog.Builder(NewNoteActivity.this)
