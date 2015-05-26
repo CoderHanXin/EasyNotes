@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.addict.easynotes.activitys;
+package com.addict.easynotes.activities;
 
 import android.app.AlertDialog;
 import android.content.Context;

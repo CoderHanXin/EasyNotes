@@ -22,6 +22,6 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/primary"
+    android:theme="@style/AppTheme.Toolbar.Light"
     app:popupTheme="@style/Theme.AppCompat.Light.NoActionBar"
-    app:theme="@style/AppTheme.Toolbar.Light"
     />

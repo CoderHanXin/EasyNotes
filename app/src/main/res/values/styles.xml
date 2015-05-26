@@ -31,15 +31,14 @@
         <item name="android:divider">@color/divider</item>
 
     </style>
-    <!-- Toolbar Theme -->
-    <style name="AppTheme.Toolbar.Light" parent="Theme.AppCompat.NoActionBar">
-        <!-- title text color -->
-        <item name="android:textColorPrimary">@color/brand_text</item>
-        <!-- menu text color -->
-        <item name="actionMenuTextColor">@color/brand_text</item>
-        <!-- menu color 三个点-->
-        <item name="android:textColorSecondary">@color/brand_text</item>
-    </style>
+    <!-- Toolbar Theme --><style name="AppTheme.Toolbar.Light" parent="Theme.AppCompat.NoActionBar">
+    <!-- title text color -->
+    <item name="android:textColorPrimary">@color/brand_text</item>
+    <!-- menu text color -->
+    <item name="actionMenuTextColor">@color/brand_text</item>
+    <!-- menu color 三个点-->
+    <item name="android:textColorSecondary">@color/brand_text</item>
+</style>
 
-    <style name="AppTheme.Dialog" parent="@android:style/Theme.Holo.Light.Dialog"></style>
+    <style name="AppTheme.Dialog" parent="@android:style/Theme.Holo.Light.Dialog"/>
 </resources>

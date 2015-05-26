@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-package com.addict.easynotes.activitys;
+package com.addict.easynotes.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,8 +33,6 @@ public class MainActivity extends BaseActivity {
 
     private ViewPager mViewPager;
     private PagerSlidingTabStrip mTabs;
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
     private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
@@ -71,13 +67,6 @@ public class MainActivity extends BaseActivity {
 //        toolbar.setNavigationIcon(R.drawable.ic_action_menu);
 
         initViewPager();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open,
-                R.string.drawer_close);
-        mDrawerToggle.syncState();
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
     private void initViewPager() {

@@ -28,7 +28,7 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.addict.easynotes.R;
-import com.addict.easynotes.activitys.NewNoteActivity;
+import com.addict.easynotes.activities.NewNoteActivity;
 import com.addict.easynotes.dao.NoteDao;
 import com.addict.easynotes.models.Note;
 import com.addict.easynotes.utils.DateUtils;

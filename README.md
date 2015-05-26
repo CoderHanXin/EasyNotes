@@ -6,9 +6,9 @@ A simple notes App for Android.
 - Material Design
 
 ## Run Environment
-Min SDK version 4.0+
-Android Studio version 1.1.0
-Gradle version 2.2.1
+- Min SDK version 4.0+
+- Android Studio version 1.1.0
+- Gradle version 2.2.1
 
 ## Open source projects
 - [OrmLite](http://ormlite.com/)
